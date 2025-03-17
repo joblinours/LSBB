@@ -18,7 +18,7 @@ Ce projet est une application de serveur de caméra qui permet de visualiser, en
 1. Clonez le dépôt :
     ```bash
     git clone https://github.com/joblinours/LSBB.git
-    cd camera-server-app
+    cd LSBB
     ```
 
 2. Installez les dépendances :
