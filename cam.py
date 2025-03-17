@@ -30,7 +30,6 @@ def send_video():
         try:
             video_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             video_sock.connect((SERVER_IP, VIDEO_PORT))
-            print("Connecté au serveur vidéo")
 
             # Envoi de l'en-tête : nom de la caméra chiffré
             name_bytes = camera_name.encode()
@@ -72,7 +71,6 @@ def send_video():
                     time.sleep(sleep_time)
 
         except Exception as e:
-            print("Erreur dans l'envoi vidéo :", e)
             time.sleep(2)  # Attente avant reconnexion
         finally:
             try:
@@ -94,7 +92,6 @@ def send_audio():
         try:
             audio_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             audio_sock.connect((SERVER_IP, AUDIO_PORT))
-            print("Connecté au serveur audio")
 
             # Envoi de l'en-tête : nom de la caméra chiffré
             name_bytes = camera_name.encode()
@@ -109,7 +106,6 @@ def send_audio():
                     packet = struct.pack("!I", len(encrypted_audio)) + encrypted_audio
                     audio_sock.sendall(packet)
         except Exception as e:
-            print("Erreur dans l'envoi audio :", e)
             time.sleep(2)
         finally:
             try:
@@ -129,7 +125,6 @@ def command_server():
             if data == 'toggle_source':
                 with use_screen_lock:
                     use_screen = not use_screen
-                    print(f"Basculé vers {'écran' if use_screen else 'webcam'}")
             conn.close()
 
 if __name__ == '__main__':
